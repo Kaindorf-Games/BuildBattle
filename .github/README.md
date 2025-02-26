@@ -13,6 +13,9 @@ Have fun using it! Leave a good rating if you really like it.
 [**💣 Issues Reporting (Discord)**](https://discordapp.com/invite/UXzUdTP)
 [**❤ Make Donation**](https://www.paypal.me/plugilyprojects)
 
+# How to Build?
+This project and [MiniGamesBox](https://github.com/Kaindorf-Games/MiniGamesBox) have to be in the same folder. Just execute the build.bat file
+
 # Credits
 
 ## Open Source Libraries
