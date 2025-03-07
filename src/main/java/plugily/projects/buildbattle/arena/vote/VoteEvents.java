@@ -20,9 +20,12 @@
 
 package plugily.projects.buildbattle.arena.vote;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import plugily.projects.buildbattle.Main;
 import plugily.projects.buildbattle.arena.BaseArena;
 import plugily.projects.buildbattle.arena.BuildArena;
@@ -118,6 +121,26 @@ public class VoteEvents implements Listener {
         });
       }
       event.setCancelled(true);
+    }
+  }
+
+  @EventHandler
+  public void onDamage(EntityDamageEvent event) {
+    Player player = (Player) event.getDamageSource().getCausingEntity();
+    for(BaseArena arena : plugin.getArenaRegistry().getPluginArenas()) {
+      if(arena.getPlayers().contains(player) && arena.getArenaInGameState() != BaseArena.ArenaInGameState.BUILD_TIME) {
+        event.setCancelled(true);
+      }
+    }
+  }
+
+  @EventHandler
+  public void onInventoryClick(InventoryClickEvent event) {
+    Player player = (Player) event.getWhoClicked();
+    for(BaseArena arena : plugin.getArenaRegistry().getPluginArenas()) {
+      if(arena.getPlayers().contains(player) && arena.getArenaInGameState() == BaseArena.ArenaInGameState.PLOT_VOTING) {
+        event.setCancelled(true);
+      }
     }
   }
 

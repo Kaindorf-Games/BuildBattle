@@ -173,6 +173,10 @@ public class Plot {
     particles.clear();
   }
 
+  public boolean isEmpty() {
+    return (particles.isEmpty() && cuboid.blockListWithoutFloor().stream().noneMatch(b -> b.getType() != Material.AIR));
+  }
+
   public void resetPlot() {
     if(cuboid == null) {
       return;

@@ -82,11 +82,12 @@ public class InGameState extends PluginInGameState {
             if(user.isSpectator()) continue;
 
             Plot playerPlot = pluginArena.getPlotFromPlayer(player);
-            if(!pluginArena.getQueue().contains(playerPlot)) {
+            if(!pluginArena.getQueue().contains(playerPlot) && !playerPlot.isEmpty()) {
               pluginArena.getQueue().add(playerPlot);
             }
             player.getInventory().clear();
             pluginArena.getPlugin().getVoteItems().giveVoteItems(player);
+
             user.setStatistic("LOCAL_POINTS", 3);
           }
 
